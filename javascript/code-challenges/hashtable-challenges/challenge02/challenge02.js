@@ -1,15 +1,23 @@
-// Write here the code challenge solution
-const Repeated = (str)=>{
-    let Words = new Map()
-    str=str.replaceAll('.', '')
-    str = str.replace(/\s+/g, ' ').trim()
-    let arr = str.split(" ")   
-    for (let index = 0; index < arr.length; index++) {
-        if(Words.get(arr[index]))
-            return arr[index];
-        Words.set(arr[index],{reg : true})
+class hashTable {
+    constructor() {
+     this.storage = {};
     }
-return "No Words are repeated" ;
-} 
-
-module.exports = {Repeated};
+   
+    set(key, value) {
+     if (!this.storage[key]) this.storage[key] = { value: value };
+    }
+   }
+   
+   const repeatedwords = (str) => {
+    let arr = [],
+     repeated,
+     splitted = str.split(" ");
+    for (let i = 0; i < splitted.length; i++) {
+     arr.includes(splitted[i]) ? (repeated = splitted[i]) : arr.push(splitted[i]);
+     if (repeated) return repeated;
+    }
+    return "No Repetition";
+   };
+   console.log(repeatedwords("I am ASAC learning programming at ASAC"));
+   
+   module.exports = { hashTable, repeatedwords }; 

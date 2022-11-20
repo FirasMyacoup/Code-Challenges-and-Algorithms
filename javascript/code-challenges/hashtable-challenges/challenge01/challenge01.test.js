@@ -1,17 +1,29 @@
-// Write your test here
+"use strict";
 
-const Checker = require('./challenge01.js');
+const { Node, Tree, Arr } = require("./challenge01");
 
-describe('Checker', () => {
-    it('returns true if the tree has two elements that their summation is the given integer', () => {
-        let tree1 = [7,2,9,1,5,null,14];
-        let integer = 3;
-        expect(Checker(tree1, integer)).toEqual(true);
-    });
-    it('returns true if the tree has two elements that their summation is the given integer', () => {
-        let tree2 = [7,2,9,2,5,null,14];
-        let integer = 3;
-        expect(Checker(tree2, integer)).toEqual(false);
-    });
-}   
-);
+describe("Testing the 1st challenge ", () => {
+ let tree,
+  hashTable = new Arr();
+ beforeAll(() => {
+  let one = new Node(1);
+  let two = new Node(2);
+  let three = new Node(5);
+  let four = new Node(7);
+  let five = new Node(9);
+  let six = new Node(14);
+  
+
+  one.left = two;
+  one.right = three;
+  two.left = four;
+  two.right = five;
+  three.left = six;
+  
+
+  tree = new Tree(one);
+ });
+ it("It should return true", () => {
+  expect(hashTable.checkSum(tree, 15)).toBeTruthy();
+ });
+});

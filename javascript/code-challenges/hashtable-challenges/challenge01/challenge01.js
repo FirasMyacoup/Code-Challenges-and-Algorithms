@@ -1,17 +1,53 @@
-// Write here the code challenge solution
-function Checker (tree, integer) {
-    let indexOne = 0;
-    let indexTwo = 1;
-    while (indexOne < tree.length) {
-        while (indexTwo < tree.length) {
-            if (tree[indexOne] + tree[indexTwo] === integer) {
-                return true;
-            }
-            indexTwo++;
-        }
-        indexOne++;
-        indexTwo = indexOne + 1;
-    } return false;
+"use strict";
 
-}
-module.exports = Checker;
+class Node {
+    constructor(value = null) {
+      this.value = value;
+      this.left = null;
+      this.right = null;
+    }
+  }
+  
+  class Tree{
+    constructor(root) {
+      this.root = root || null;
+    }
+  
+    preOrder() {
+      let results = [];
+      let traverse = (node) => {
+        if (node && node.value) {
+          results.push(node.value);
+          if (node.left) traverse(node.left);
+          if (node.right) traverse(node.right);
+        }
+      };
+      traverse(this.root);
+      return results;
+    }
+  }
+  
+  class Arr {
+    constructor() {
+      this.storage = new Array();
+    }
+  
+   set(key, value) {
+    let hash = this.hash(key);
+      this.storage[hash] = value;
+    }
+
+    checkSum(tree, sum) {
+        let arr = tree.preOrder();
+        for (let i = 0; i < arr.length; i++) {
+            let num = arr[i];
+            let diff = sum - num;
+            if (arr.includes(diff)) {
+            return true;
+            }
+        }
+        return false;
+        }
+  }
+  
+  module.exports = { Node, Tree, Arr };
